@@ -7,7 +7,7 @@ In Project.Settings set CustomProvider with parameter = "MSSQL" to use MSSQL. By
 
 *****
 Tables:
- Student(id,FirstName,LastName,Address,Group_Id)
- Group(id,GroupName,Speciality)
+-Student(id,FirstName,LastName,Address,Group_Id)
+-Group(id,GroupName,Speciality)
 *****
 
