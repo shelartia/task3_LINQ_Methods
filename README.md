@@ -2,12 +2,12 @@ task3.3
 =======
 
 With mongodb and mssql
-
-In Project.Settings set CustomProvider with param = "MSSQL" to use MSSQL. By default is using Mongodb.
+*****
+In Project.Settings set CustomProvider with parameter = "MSSQL" to use MSSQL. By default is using Mongodb.
 
 *****
 Tables:
-Student(id,FirstName,LastName,Address,Group_Id)
-Group(id,GroupName,Speciality)
+ Student(id,FirstName,LastName,Address,Group_Id)
+ Group(id,GroupName,Speciality)
 *****
 
