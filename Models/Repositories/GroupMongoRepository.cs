@@ -87,21 +87,23 @@ namespace Combo.Models
  
         #endregion
 
-        private List<GroupModel> _GroupsList = new List<GroupModel>();
+        
 
         public IEnumerable<GroupModel> GetAllGroups()
         {
             if (ServerIsDown) return null;
+            List<GroupModel> _GroupsList = new List<GroupModel>();
  
             if (Convert.ToInt32(GroupsCollection.Count()) > 0)
             {
                 _GroupsList.Clear();
-                var Groups = GroupsCollection.FindAs(typeof(GroupModel), Query.NE("GroupName", "null"));
-                if (Groups.Count() > 0)
+                
+                var _Groups = GroupsCollection.FindAllAs<GroupModel>();
+                if (_Groups.Count() > 0)
                 {
-                    foreach (GroupModel Group in Groups)
+                    foreach (GroupModel _Group in _Groups)
                     {
-                        _GroupsList.Add(Group);
+                        _GroupsList.Add(_Group);
                     }
                 }
             }
@@ -120,8 +122,7 @@ namespace Combo.Models
                 #endregion
             }
  
-            var result = _GroupsList.AsQueryable();
-            return result;
+            return _GroupsList;
         }
 
 

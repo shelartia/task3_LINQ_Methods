@@ -94,19 +94,20 @@ namespace Combo.Models
 
         #endregion
 
-        private List<StudentModel> _StudentsList = new List<StudentModel>();
-
+       
         public IEnumerable<StudentModel> GetAllStudents()
         {
             if (ServerIsDown) return null;
+            List<StudentModel> _StudentsList = new List<StudentModel>();
 
-            if (Convert.ToInt32(GroupsCollection.Count()) > 0)
+            if (Convert.ToInt32(StudentsCollection.Count()) > 0)
             {
+
                 _StudentsList.Clear();
-                var Students = StudentsCollection.FindAs(typeof(StudentModel), Query.NE("FirstName", "null"));
-                if (Students.Count() > 0)
+                var _Students = StudentsCollection.FindAllAs<StudentModel>();
+                if (_Students.Count() > 0)
                 {
-                    foreach (StudentModel model in Students)
+                    foreach (StudentModel model in _Students)
                     {
                         model.GroupName = (from g in GroupsCollection.AsQueryable<GroupModel>()
                                            where g.Id == model.Group_Id
@@ -131,8 +132,7 @@ namespace Combo.Models
             }
             
 
-            var result = _StudentsList.AsQueryable();
-            return result;
+            return _StudentsList;
         }
 
         public void PrepareGroup(StudentModel model)
