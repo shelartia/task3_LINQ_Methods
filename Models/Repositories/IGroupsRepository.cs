@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Combo.Models
 {
-    interface IGroupsRepository
+    public interface IGroupsRepository
     {
         IEnumerable<GroupModel> GetAllGroups();
         GroupModel GetGroupById(string id);

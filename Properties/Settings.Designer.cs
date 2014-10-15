@@ -41,14 +41,5 @@ namespace Combo.Properties {
                 return ((string)(this["DB"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string CustomProvider {
-            get {
-                return ((string)(this["CustomProvider"]));
-            }
-        }
     }
 }

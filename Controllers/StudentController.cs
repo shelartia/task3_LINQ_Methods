@@ -1,7 +1,10 @@
 ﻿using Combo.Models;
 using Combo.Properties;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,20 +13,12 @@ namespace Combo.Controllers
 {
     public class StudentController : Controller
     {
-        //public StudentMSRepository Context = new StudentMSRepository();
-        //public StudentMongoRepository Context = new StudentMongoRepository();
+        
         private IStudentsRepository Context;
-        public StudentController()
+        public StudentController(IStudentsRepository _Context)
         {
-            if (!string.IsNullOrEmpty(Settings.Default.CustomProvider) &&  Settings.Default.CustomProvider== "MSSQL")
-            {
-                Context = new StudentMSRepository();
-                
-            }
-            else 
-            {
-                Context = new StudentMongoRepository(); 
-            }
+            
+            Context = _Context;
         }
         
         public ActionResult Index()

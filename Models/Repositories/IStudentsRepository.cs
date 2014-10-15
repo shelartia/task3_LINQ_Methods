@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Combo.Models
 {
-    interface IStudentsRepository
+    public interface IStudentsRepository
     {
         IEnumerable<StudentModel> GetAllStudents();
         StudentModel GetStudentById(string id);

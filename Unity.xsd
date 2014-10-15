@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/practices/2010/unity" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="unity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="typeAliases">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="typeAlias">
+                <xs:complexType>
+                  <xs:attribute name="alias" type="xs:string" use="required" />
+                  <xs:attribute name="type" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="containers">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="container">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="types">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="type">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="lifetime">
+                                  <xs:complexType>
+                                    <xs:attribute name="type" type="xs:string" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="type" type="xs:string" use="required" />
+                              <xs:attribute name="mapTo" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -14,11 +14,11 @@ namespace Combo.Models
         {
             context = new OperationDataContext();
         }
-        public Table<Group> Groups { get { return context.Groups; } }
-        private List<GroupModel> GroupsList = new List<GroupModel>();
+        
 
         public IEnumerable<GroupModel> GetAllGroups()
         {
+            List<GroupModel> GroupsList = new List<GroupModel>();
             var query = from Group in context.Groups
                         select Group;
 
@@ -88,5 +88,6 @@ namespace Combo.Models
             }
 
         }
+
     }
 }

@@ -162,6 +162,8 @@ namespace Combo.Models
             GroupsCollection.Remove(Query.EQ("_id", objectId));
             return true;
         }
+
+        
     }
 
 }
