@@ -31,7 +31,7 @@ namespace Combo.Controllers
         {
             StudentModel model = new StudentModel();
             Context.PrepareGroup(model);
-            return View(model);
+            return View("Create",model);
         }
 
         [HttpPost]
@@ -43,7 +43,7 @@ namespace Combo.Controllers
 
                 return RedirectToAction("Index");
             }
-            return View(model);
+            return View("Create", model);
         }
        
         
@@ -55,7 +55,7 @@ namespace Combo.Controllers
             {
                 return HttpNotFound();
             }
-            return View(model);
+            return View("Delete", model);
         }
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(string id)

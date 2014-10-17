@@ -68,7 +68,7 @@ namespace Combo.Models
             return model;
         }
 
-        public StudentModel Add(StudentModel model)
+        public void Add(StudentModel model)
         {
             try
             {
@@ -81,11 +81,11 @@ namespace Combo.Models
                 };
                 context.Students.InsertOnSubmit(Student);
                 context.SubmitChanges();
-                return model;
+                
             }
             catch
             {
-                return model;
+                //
             }
         }
 

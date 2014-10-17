@@ -137,26 +137,16 @@ namespace Combo.Models
         }
 
 
-        public GroupModel Add(GroupModel Group)
+        public void Add(GroupModel Group)
         {
             if (string.IsNullOrEmpty(Group.Id))
             {
                 Group.Id = Guid.NewGuid().ToString();
             }
             GroupsCollection.Save(Group);
-            return Group;
         }
 
-        /*public bool Update(string objectId, GroupModel Group)
-        {
-            UpdateBuilder updateBuilder = MongoDB.Driver.Builders.Update
-                .Set("GroupName", Group.GroupName)
-                .Set("Speciality", Group.Speciality);
-            GroupsCollection.Update(Query.EQ("_id", objectId), updateBuilder);
- 
-            return true;
-        }*/
- 
+         
         public bool Delete(string objectId)
         {
             GroupsCollection.Remove(Query.EQ("_id", objectId));

@@ -12,6 +12,7 @@ namespace Combo.Models
         // Constructor
         public GroupMSRepository()
         {
+            
             context = new OperationDataContext();
         }
         
@@ -54,22 +55,23 @@ namespace Combo.Models
             return model;
         }
 
-        public GroupModel Add(GroupModel groupmodel)
+        public void Add(GroupModel groupmodel)
         {
             try
             {
-                Group Group = new Group()
+                Group group = new Group()
                 {
                     GroupName = groupmodel.GroupName,
                     Speciality = groupmodel.Speciality
                 };
-                context.Groups.InsertOnSubmit(Group);
+                context.Groups.InsertOnSubmit(group);
                 context.SubmitChanges();
-                return groupmodel;
+
+                
             }
             catch
             {
-                return groupmodel;
+                //
             }
         }
 

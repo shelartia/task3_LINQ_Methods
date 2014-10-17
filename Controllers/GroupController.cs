@@ -24,13 +24,14 @@ namespace Combo.Controllers
 
         public ActionResult Index()
         {
+            
             return View("Index", Context.GetAllGroups());
         }       
 
         public ActionResult Create()
         {
             GroupModel model = new GroupModel();
-            return View(model);
+            return View("Create",model);
         }
 
         [HttpPost]
@@ -54,7 +55,7 @@ namespace Combo.Controllers
             {
                 return HttpNotFound();
             }
-            return View(model);
+            return View("Delete",model);
         }
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(string id)

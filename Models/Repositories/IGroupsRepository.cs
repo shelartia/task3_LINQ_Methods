@@ -10,7 +10,7 @@ namespace Combo.Models
     {
         IEnumerable<GroupModel> GetAllGroups();
         GroupModel GetGroupById(string id);
-        GroupModel Add(GroupModel group);
+        void Add(GroupModel group);
         bool Delete(string objectId);
     }
 }

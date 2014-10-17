@@ -10,7 +10,7 @@ namespace Combo.Models
     {
         IEnumerable<StudentModel> GetAllStudents();
         StudentModel GetStudentById(string id);
-        StudentModel Add(StudentModel group);
+        void Add(StudentModel group);
         void PrepareGroup(StudentModel model);
         bool Delete(string objectId);
     }

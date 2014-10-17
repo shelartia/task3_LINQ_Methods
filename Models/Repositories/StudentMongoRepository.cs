@@ -167,14 +167,14 @@ namespace Combo.Models
             return model;
         }
 
-        public StudentModel Add(StudentModel model)
+        public void Add(StudentModel model)
         {
             if (string.IsNullOrEmpty(model.Id))
             {
                 model.Id = Guid.NewGuid().ToString();
             }
             StudentsCollection.Save(model);
-            return model;
+            
         }
 
         public bool Delete(string objectId)
