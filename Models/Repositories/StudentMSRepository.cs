@@ -19,18 +19,18 @@ namespace Combo.Models
 
         public IEnumerable<StudentModel> GetAllStudents()
         {
-            var query = from Student in context.Students
-                        join Group in context.Groups
-                        on Student.Group_Id equals Group.Id
-                        select new StudentModel
+            var query = context.Students.AsEnumerable().Join(context.Groups.AsEnumerable(),
+                        student => student.Group_Id,
+                        group => group.Id,
+                        (student, group) => new StudentModel
                         {
-                            Id = Student.Id.ToString(),
-                            FirstName = Student.FirstName,
-                            LastName = Student.LastName,
-                            Address = Student.Address,
-                            GroupName = Group.GroupName
-
-                        };
+                            Id = student.Id.ToString(),
+                            FirstName = student.FirstName,
+                            LastName = student.LastName,
+                            Address = student.Address,
+                            GroupName = group.GroupName
+                        }).OrderBy(x => x.FirstName);
+                
             StudentList = query.ToList();
             return StudentList;
         }
@@ -42,7 +42,7 @@ namespace Combo.Models
                     {
                         Text = x.GroupName,
                         Value = x.Id.ToString()
-                    });
+                    }).OrderBy(x => x.Text);
         }
 
         
@@ -53,18 +53,18 @@ namespace Combo.Models
             {
                 throw new ArgumentNullException("id", "User Id is empty!");
             }
-            StudentModel model = (from Student in context.Students
-                                  join Group in context.Groups
-                                  on Student.Group_Id equals Group.Id
-                                  where Student.Id == Convert.ToInt32(id)
-                                  select new StudentModel()
-                                  {
-                                      Id = Student.Id.ToString(),
-                                      FirstName = Student.FirstName,
-                                      LastName = Student.LastName,
-                                      Address = Student.Address,
-                                      GroupName = Group.GroupName
-                                  }).FirstOrDefault();
+            StudentModel model = context.Students.AsEnumerable().Join(context.Groups.AsEnumerable(),
+                                      student => student.Group_Id,
+                                      group => group.Id,
+                                      (student, group) => new StudentModel
+                                       {
+                                            Id = student.Id.ToString(),
+                                            FirstName = student.FirstName,
+                                            LastName = student.LastName,
+                                            Address = student.Address,
+                                            GroupName = group.GroupName
+                                       }).Where(x => x.Id == id).FirstOrDefault();
+                
             return model;
         }
 

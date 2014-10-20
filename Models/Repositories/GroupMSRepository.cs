@@ -20,10 +20,8 @@ namespace Combo.Models
         public IEnumerable<GroupModel> GetAllGroups()
         {
             List<GroupModel> GroupsList = new List<GroupModel>();
-            var query = from Group in context.Groups
-                        select Group;
-
-            var Groups = query.ToList();
+            var querym = context.Groups.AsEnumerable().OrderBy(Group => Group.GroupName); 
+            var Groups = querym.ToList();
             foreach (var GroupData in Groups)
             {
                 GroupsList.Add(new GroupModel()
@@ -42,14 +40,12 @@ namespace Combo.Models
             {
                 throw new ArgumentNullException("id", "User Id is empty!");
             }
-            GroupModel model = (from Group in context.Groups
-
-                                where Group.Id == Convert.ToInt32(id)
-                                select new GroupModel()
+            GroupModel model = context.Groups.AsQueryable<Group>().Where(Group => Group.Id == Convert.ToInt32(id)).
+                               Select(x => new GroupModel()
                                 {
-                                    Id = Group.Id.ToString(),
-                                    GroupName = Group.GroupName,
-                                    Speciality = Group.Speciality
+                                    Id = x.Id.ToString(),
+                                    GroupName = x.GroupName,
+                                    Speciality = x.Speciality
 
                                 }).FirstOrDefault();
             return model;
